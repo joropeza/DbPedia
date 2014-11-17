@@ -18,7 +18,7 @@ angular.module('clientApp') // make sure this is set to whatever it is in your c
 		// Just so we can confirm that the bindings are working
 		console.log($scope.queryString);
 
-		var mydata = { "searchTerm": $scope.queryString};
+		var mydata = { "queryString": $scope.queryString};
 
 
 		// Make the request to the server ... which doesn't exist just yet

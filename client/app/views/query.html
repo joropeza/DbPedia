@@ -1,0 +1,34 @@
+<div class="signup-container">
+	<div class="col-md-12">
+		<h3 class="signup-header">Query DbPedia</h3>
+		<hr>
+		<br>
+	</div>
+ 
+	<div class="signup-form">
+		
+		<form class="form-horizontal">
+ 
+ 
+		<!-- Text input-->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="firstname">Query</label>  
+			<div class="col-md-5">
+			<input id="firstname" name="firstname" ng-model="queryString" type="text" placeholder="stuff" class="form-control input-md">
+				
+			</div>
+		</div>
+ 
+ 
+		<!-- Button -->
+		<div class="form-group">
+			<label class="col-md-4 control-label" for="signup"></label>
+			<div class="col-md-5">
+				<button ng-click="runQuery()" id="signup" name="signup" class="btn btn-success btn-block">Run!</button>
+			</div>
+		</div>
+ 
+		</form>
+	</div>
+ 
+</div>

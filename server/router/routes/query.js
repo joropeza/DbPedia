@@ -15,6 +15,43 @@ var db = require('../../database');
 var Query = db.query;
 var Resources = db.resources;
 
+function influenceTree(queryString, callback) {
+
+		getInfluencedBy(queryString, function(returnValue) {
+
+			//iterate the influences, offering to add them to the DB, and then getting their own influencedBys
+			for (var i = 0, item; item = returnValue[i]; i++) {
+
+
+
+			}
+
+
+		});
+}
+
+function getInfluencedBy(queryString, callback) {
+
+	var query = "select ?label ?wikiId ?influencedBy where { ?x owl:sameAs? dbpedia:" + queryString + " . ?x dbpedia-owl:influencedBy ?influencedBy . ?influencedBy rdfs:label ?label . ?influencedBy dbpedia-owl:wikiPageID ?wikiId . FILTER langMatches(lang(?label), 'en')}";
+
+	qDbPedia(query, function(dbpediaEntry) {
+
+		if (dbpediaEntry.length > 0) {
+
+			//iterate the list of influenced by, selectively adding them to the DB if they're not in there
+
+		}
+
+	});
+
+}
+
+function addToCollection(queryString, callback) {
+
+
+
+}
+
 
 function wikiResource(queryString, callback) {
 
@@ -45,8 +82,7 @@ function wikiResource(queryString, callback) {
 			qDbPedia(query, function(dbpediaEntry) {
 
 
-				console.log(dbpediaEntry);
-
+				
 				if (dbpediaEntry.length > 0) {
 
 					var bD;
@@ -165,11 +201,18 @@ router.post('/', function(req, res) {
 
 			returnObject = returnValue;
 
-			return res.status(201).send(
-				returnObject
-			);
 
-			console.log('why am I here?');
+			//added to force an artificial iteration of influenced
+			influenceTree(param, function(returnValue) {
+
+				return res.status(201).send(returnObject);
+
+				console.log('why am I here?');
+
+			});
+
+
+			
 
 		});
 

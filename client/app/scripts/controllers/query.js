@@ -19,7 +19,7 @@ angular.module('clientApp') // make sure this is set to whatever it is in your c
 			// Just so we can confirm that the bindings are working
 			console.log($scope.queryString);
 
-			if ($scope.queryString === null) {
+			if ($scope.queryString == null) {
 				$scope.queryString = 'Carl Jung';
 			}
 
@@ -62,9 +62,9 @@ angular.module('clientApp') // make sure this is set to whatever it is in your c
 
 				}
 
-
+				$scope.chartdata = labelColorTestData;
 				
-
+				/*
 				var width = 500;
 
 				var chart = d3.timeline()
@@ -80,10 +80,12 @@ angular.module('clientApp') // make sure this is set to whatever it is in your c
 					});
 
 				console.log(labelColorTestData);
+				
 
+				
 				var svg = d3.select('#timeline6').append('svg').attr('width', width)
 					.datum(labelColorTestData).call(chart);
-
+				*/
 
 			});
 

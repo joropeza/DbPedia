@@ -35,6 +35,14 @@ angular
         templateUrl: 'views/testing.html',
         controller: 'TestingCtrl'
       })
+      .when('/list', {
+        templateUrl: 'views/list.html',
+        controller: 'ListCtrl'
+      })
+      .when('/vwiki/:label', {
+        templateUrl: 'views/vwiki.html',
+        controller: 'VwikiCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

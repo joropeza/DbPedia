@@ -3,6 +3,7 @@
  */
 var mongoose = require('mongoose');
 var QueryModel = require('./schemas/query');
+var ResourceModel = require('./schemas/resources');
 
 // Connections
 var developmentDb = 'mongodb://localhost/test';
@@ -36,3 +37,4 @@ db.once('open', function callback () {
 });
 
 exports.query = QueryModel;
+exports.resources = ResourceModel;

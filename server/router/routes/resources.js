@@ -11,6 +11,8 @@ var db = require('../../database');
 var Query = db.query;
 var Resources = db.resources;
 
+var rS = require('../../services/resourceService');
+
 router.get('/', function(req, res) {
 
 	Resources.find({}, function(err, reqResources) {
@@ -21,15 +23,46 @@ router.get('/', function(req, res) {
 
 });
 
+router.get('/:label/related/:verb', function(req, res) {
+
+	var label = req.param('label')
+    var verb = req.param('verb')
+
+	console.log("Fetching " + verb + " for " + label);
+
+	rS.buildInfluencedByTree(label, verb, function(reqResources) {
+
+    	if (reqResources)
+    	  res.send(reqResources);  
+    	else {
+    	   //resource not found... so let's see if it exists in the dbpedia
+    	   console.log(reqResources);
+           res.send(null);
+
+    	 }
+  });  
+
+});
+
+
+
 router.get('/:label', function(req, res) {
 
 	var label = req.param('label')
 
-	Resources.findOne({'label': label}, function(err, reqResources) {
+	console.log("Fetching " + label);
 
-    	res.send(reqResources);  
-    
+	rS.wikiResource(label, function(reqResources) {
+
+    	if (reqResources)
+    	  res.send(reqResources);  
+    	else {
+    	   //resource not found... so let's see if it exists in the dbpedia
+    	   console.log(reqResources);
+
+    	 }
   });
+
 
 });
 

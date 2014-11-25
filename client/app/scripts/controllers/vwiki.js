@@ -16,7 +16,29 @@ angular.module('clientApp')
 
 			
 			$scope.res = data;
-			//console.log($scope.res.label);
+			console.log($scope.res);
+
+			if (data.influencedBy.length == 0) {
+				var request2 = $http.get('/resources/' + $routeParams.label + '/related/influencedBy');
+				request2.success(function(influencedBys) {
+					$scope.influencedBys = influencedBys;
+				});
+
+				
+
+			} else {
+				$scope.influencedBys = data.influencedBy;
+			}
+
+			if (data.influenced.length == 0) {
+			
+			var request3 = $http.get('/resources/' + $routeParams.label + '/related/influenced');
+				request3.success(function(influenceds) {
+					$scope.influenceds = influenceds;
+				});
+			} else {
+				$scope.influenceds = data.influenced;
+			}
 
 		});
 

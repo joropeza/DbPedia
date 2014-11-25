@@ -1,3 +1,21 @@
 {{res.label}}
 
 {{res.comment}}
+
+<h4>Influenced By</h4>
+
+<p ng-repeat="influencedBy in influencedBys">
+	<a ng-href="/#/vwiki/{{influencedBy.label}}">{{influencedBy.label}}</a>
+</p>
+
+<h4>Influenced</h4>
+
+<p ng-repeat="influenced in influenceds">
+	<a ng-href="/#/vwiki/{{influenced.label}}">{{influenced.label}}</a>
+</p>
+
+<h4>Links</h4>
+
+<p><a ng-href="http://en.wikipedia.org/wiki?curid={{res._id}}">Wikipedia</a></p>
+
+<p><a ng-href="http://dbpedia.org/page/{{res.label.replace(' ','_')}}">DbPedia</a></p>
